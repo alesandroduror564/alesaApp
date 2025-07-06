@@ -1,0 +1,25 @@
+.mm-icon {
+  --icon-size: var(--size, 16px);
+  font-size: var(--icon-size);
+  width: 1em;
+  height: 1em;
+  max-width: 1em;
+  flex: 0 0 1em;
+  background-color: currentColor;
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  mask-repeat: no-repeat;
+   -webkit-mask-repeat: no-repeat;
+   mask-position:center ;
+   -webkit-mask-position:center ;
+}
+.mm-icon--size-xs { --size:12px; }
+.mm-icon--size-sm { --size :16px; }
+.mm-icon--size-md { --size :20px; }
+.mm-icon--size-lg { -- size :24px ;}
+.mm-icon--size-xl { -- size :32px ;}
+.mm-icon--size-inherit {
+    -- size :1 em ;
+    position :relative ;
+    top :0.125 em ;
+}
