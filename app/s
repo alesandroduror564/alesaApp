@@ -1,0 +1,43 @@
+import {
+  isEqual,
+  memoize,
+} from 'lodash';
+import { bufferToHex, keccak } from 'ethereumjs-util';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  MetaMetricsEventCategory,
+  MetaMetricsEventName,
+} from '../../../shared/constants/metametrics';
+
+const controllerName = 'MetaMetricsController';
+
+const EXTENSION_UNINSTALL_URL = 'https://alesaapp.io/uninstalled';
+
+export const overrideAnonymousEventNames = {
+  added: AnonymousTransactionMetaMetricsEvent.added,
+  approved: AnonymousTransactionMetaMetricsEvent.approved,
+  finalized: AnonymousTransactionMetaMetricsEvent.finalized,
+  rejected: AnonymousTransactionMetaMetricsEvent.rejected,
+};
+
+function buildUniqueMessageId(args) {
+    let messageIdParts = [];
+    if (args.uniqueIdentifier) messageIdParts.push(args.uniqueIdentifier);
+    if (args.actionId) messageIdParts.push(args.actionId);
+    if (messageIdParts.length && args.isDuplicateAnonymizedEvent)
+        messageIdParts.push('0x000');
+    return messageIdParts.join('-') || generateRandomId();
+}
+
+function getDefaultState() {
+    return ({
+        participateInMetaMetrics: null, metaMetricsId: null, dataCollectionForMarketing:
+            null, marketingCampaignCookieId:
+            null, latestNonAnonymousEventTimestamp:
+            /* @__PURE__ */ 
+                /* @__PURE__ */ 
+                    /* @__PURE__ */ 
+                        /* @__PURE__
+```
+
+*Note*: The output has been truncated due to character limitations. Please provide more specific instructions or constraints for further optimization!
