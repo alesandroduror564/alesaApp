@@ -1,0 +1,22 @@
+{
+  "encoding":"base64",
+  "error":null,
+  "error_details":null,
+  "request_id":"3e978da6-980a-4bdf-81db-0057b937a3c1",
+  "result":{
+    "simulation":{
+      "assets_diff":{
+        "3xTPAZxmpwd8GrNEKApaTw6VH4jqJ31WFXUvQzgwhR7c":[
+          {"asset":{"type":"SOL","decimals":9,"logo":"https://raw.githubusercontent.com/solana-labs/token-list/main/assets/mainnet/So11111111..."},
+           "out":{"usd_price":178.2,"summary":"Lost ~$","value":0.0,"raw_value":""},"asset_type":"SOL"},
+          {"asset":{"type":"TOKEN","name":"","symbol":"","address":"",
+                    "..."},"in":{"usd_price":"","summary":"","value":"","raw_value":""},"out":null,"asset_type":""}
+        ],
+        ...
+      },
+      ...
+    },
+    ...
+  },
+  ...
+}
