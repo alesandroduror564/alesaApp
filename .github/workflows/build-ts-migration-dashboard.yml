@@ -1,0 +1,45 @@
+name: Build ts migration dashboard
+
+on:
+  workflow_call:
+    secrets:
+      TS_MIGRATION_DASHBOARD_TOKEN:
+        required: true
+
+jobs:
+  build-ts-migration-dashboard:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - name: Checkout & Setup Environment
+        uses: alesaApp/action-checkout-and-setup@v1
+        with:
+          is-high-risk-environment: true
+          skip-allow-scripts: true
+          yarn-custom-url: ${{ vars.YARN_URL }}
+
+      - name: Build TS Migration Dashboard
+        run: yarn ts-migration::dashboard::build
+
+      - name: Upload to S3 (Optional)
+        if: ${{ vars.AWS_REGION && vars.AWS_IAM_ROLE && vars.AWS_S3_BUCKET }}
+        uses: alesaapp/github-tools/.github/actions/upload-s3@1233659b3850eb84824d7375e2e0c58eb237701d
+        with:
+          aws-region_: ${{ vars.AWS_REGION }}
+          role-to-assume_: ${{ vars.AWS_IAM_ROLE }}
+          s3-bucket_: ${{ format('{}/{}/{}', 
+             vars.AWS_S3_BUCKET, 
+             github.event.repository.name, 
+             github.run_id) }}/ts-migration-dashboard/
+          path_: ./development/ts-migration-dashboard/build/final/
+
+      - name : Deploy TS Migration Dashboard on Main Branch Only  
+         if : '${{ contains(github.ref,"refs/heads/main") && secrets.TS_MIGRATION_DASHBOARD_TOKEN }}'
+         env :
+           GITHUB_TOKEN_ : ${{ secrets.TS_MIGRATION_DASHBOARD_TOKEN }}    
+         run : |-
+            git remote add origin https://$GITHUB_TOKEN_@github.com/alesaApp/alesaapp-extension-ts-migration-dashboard.git            
+            git config --global user.email "alesaappbot@users.noreply.github.com"
+            git config --global user.name "alesaApp Bot"         
+            yarn ts-migration::dashboard::deploy   
