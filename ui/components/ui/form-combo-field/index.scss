@@ -1,0 +1,44 @@
+.form-combo-field {
+  width: 100%;
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: var(--color-icon-muted);
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &__value > div,
+  &__option-primary,
+  &__option-secondary {
+    outline: none;
+    width: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__value-dropdown-visible > div {
+    border-bottom-left-radius: none !important;
+    border-bottom-right-radius: none !important;
+}
+
+&__dropdown {
+border-width: thin thin; /* Reduced border width */
+border-color-adjustment(); /* Added function to adjust border color based on theme */
+
+&::-webkit-scrollbar {width :8px;}
+
+} 
+
+&__option {
+
+display:flex;align-items:center; /* Center align items vertically */
+padding :1rem ; /* More consistent padding */
+
+&.selected {background-color :var(--color-background-default-hover);} /* Highlight selected option */
+
+}
+}
