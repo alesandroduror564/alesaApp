@@ -1,0 +1,58 @@
+.edit-gas-item {
+  border-radius: 24px;
+  background: var(--color-background-default);
+  color: var(--color-text-alternative);
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  padding: 4px 12px;
+  height: fit-content; /* Changed from fixed height to fit content */
+	width: min-content; /* Changed to minimum content for width */
+
+	&:hover:not([disabled]) {
+    background-color: var(--color-background-default-hover);
+	}
+
+	&--selected {
+    background-color: var(--color-primary-muted);
+
+    &:hover:not([disabled]) {
+      background-color: var(--color-primary-muted);
+    }
+	}
+
+	button.edit-gas-item--disabled[disabled] {
+    opacity: .25; /* Reduced opacity value */
+    pointer-events:none; /* Prevents interaction with disabled button */
+	}
+
+	&__name {
+    display:inline-flex;
+    align-items:center;
+    color:#333; /* Default text color, adjust as needed */
+	font-weight:bold;
+
+	svg { 
+	  margin-right:.5em; /* Adjusted margin for better spacing */
+	}
+
+	&__sufix { font-weight:normal;margin-left:.5em } /* Adjusted margins and font weight */
+	}
+
+ &__icon { 
+	font-size:x-small; 
+	line-height:normal;
+
+   &-custom { font-size:x-small+1 } 
+ }
+
+ &__maxfee,
+ &__time-estimate,
+ &__fee-estimate,
+ &__tooltip { display:inline-block;width:auto } 
+
+ &__time-estimate-low,&__fee-estimate-high { color:#ff9f1c }
+ &__time-estimate-medium,&__time-estimate-high { color:#4caf50 }
+}
