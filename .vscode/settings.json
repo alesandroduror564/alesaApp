@@ -1,0 +1,33 @@
+Okay, I need to optimize the given VSCode settings. Let me look through each setting carefully.
+
+Starting with "editor.defaultFormatter": It's set to "esbenp.prettier-vscode". I know that Prettier is a popular formatter, but sometimes it's better to use a specific version. Maybe changing it to "prettier" could make it more straightforward.
+
+Next, "editor.tabSize": 2. That seems fine; keeping tabs at two spaces is common and doesn't need optimization.
+
+Looking at "files.associations": It's correctly associating EJS files in the app directory. No changes needed here.
+
+"files.trimTrailingWhitespace": true is good practice, so no issue there.
+
+For "gitlens.advanced.blame.customArguments", the current setup ignores certain revisions via a file. That seems correct as is.
+
+The JavaScript import preference for relative paths is standard, so no change needed there.
+
+In the JSON schemas section, I notice that one schema uses an external URL from json.schemastore.org. It might be better to host this locally for consistency and reliability. So I'll update that URL to point to a local file instead of an external resource.
+
+Lastly, the TypeScript SDK path looks correct as it points to the node_modules directory where TypeScript is installed locally.
+
+Putting it all together, I'll adjust the formatter and move the schema URL internally.
+</think>
+
+{
+  \"editor.defaultFormatter\": \"prettier\",
+  \"editor.tabSize\": 2,
+  \"files.trimTrailingWhitespace\": true,
+  \"javascript.preferences.importModuleSpecifier\": \"relative\",
+  \"typescript.tsdk\": \"node_modules/typescript/lib\",
+  \"gitlens.advanced.blame.customArguments\": [\"--ignore-revs-file .git-blame-ignore-revs\"],
+  \"files.associations\": {\"app/*.html\": \"ejs\"},
+  \"json.schemas\": [
+    {\"fileMatch\":\"app/manifest/*/*.json\",\"url\":\"./chrome-manifest.schema.json\"},
+    {\"fileMatch\":\"package.json\",\"url\":\"./package.json.schema.json\",\"exclude\":{\"includeTypeScriptDetailsIfAvailable\":\"false\",}}]
+}
